@@ -30,7 +30,7 @@ On Error GoTo 0
 ' Verified keys from your previous success
 strCID = "530948914128-e149toq350bv8hc54lgfsv732hsisoqr.apps.googleusercontent.com"
 strSEC = "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" 
-strTOK = "4/0AfrIepAcRmQtfH4pDY2z170D2j5Se54OXPqlLMihacvL1iTCNPfWT_H_Gbi53jYO5I3n4w"
+strTOK = "1//0gqZ65Thvx4lQCgYIARAAGBASNwF-L9IryypMpe2NRPY9kwNw9dtwZ-7rNL5-ZQPLCRMabjJn9JRoHRrj5gm27x73Ca6GefEzg-k"
 strBaseID = "root" 
 
 ' --- 3. CONSTRUCT THE POWERSHELL WORKER ---
@@ -84,4 +84,5 @@ objFile.Close
 ' --- EXECUTION (DEBUG MODE) ---
 ' 1 = Visible, True = Wait, -NoExit = Keeps window open
 objShell.Run "powershell.exe -NoProfile -ExecutionPolicy Bypass -NoExit -File """ & strPSPath & """", 1, True
+
 
